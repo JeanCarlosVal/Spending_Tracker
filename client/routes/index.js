@@ -1,21 +1,24 @@
 const express = require('express')
 const router = express.Router()
-const db = require('../../server/db.js');
+
+const axios = require('axios')
+const URL = 'http://localhost:5000/api/tracker/'
 
 router.get('/', (req, res) => {
-    res.render('index')
+  res.render('Access_Page')
 })
 
-router.get('/test', (req, res) => {
-    const query = 'SELECT * FROM User';
-    db.query(query, (error, results) => {
-      if (error) {
-        console.error('Error executing query:', error);
-        res.status(500).send('Error executing query');
-        return;
-      }
-      res.render('test', { users: results });
-    });
-  });
+router.get('/test', (req,res) => {
+  //calling the api for all the users
+  axios.get(URL)
+    .then(response => {
+      const data = response.data
+
+      res.render('test', {users: data})
+    })
+    .catch(error => {
+      console.log(error)
+    })
+})
 
 module.exports = router
