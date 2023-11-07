@@ -1,6 +1,8 @@
 const mysql = require('mysql2/promise');
+
 // Read environment variables
 require('dotenv').config();
+
 // Create connection to MySQL database
 const mysqlPool = mysql.createPool({
   host: process.env.DB_HOST,

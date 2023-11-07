@@ -6,41 +6,42 @@
 <section>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="/Sign_up" method="POST">
+            <form action="/Profile" method="POST">
                 <h1>Sign Up</h1>
                 <label>
-                    <input type="text" name="username" placeholder="Username" />
+                    <input type="text" name="Username" placeholder="Username" />
                 </label>
                 <label>
-                    <input type="text" name="firstName" placeholder="First name" />
+                    <input type="text" name="FirstName" placeholder="First name" />
                 </label>
                 <label>
-                    <input type="text" name="lastName" placeholder="Last name" />
+                    <input type="text" name="LastName" placeholder="Last name" />
                 </label>
                 <label>
-                    <input type="email" name="email" placeholder="Email" />
+                    <input type="email" name="Email" placeholder="Email" />
                 </label>
                 <label>
-                    <input type="password" name="password" placeholder="Password" />
+                    <input type="password" name="Password" placeholder="Password" />
                 </label>
                 <button style="margin-top: 9px">Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="/Sign_in" method="POST">
+            <form action="/Home_Page" method="POST">
                 <h1>Sign in</h1>
                 <label>
-                    <input type="email" name="email" placeholder="Email" />
+                    <input type="email" name="Email" placeholder="Email" required/>
                 </label>
                 <label>
-                    <input type="password" name="password" placeholder="Password" />
+                    <input type="password" name="Password" placeholder="Password" required/>
                 </label>
                 <a href="#">Forgot your password?</a>
                 <button>Sign In</button>
-                <% if(errorMsg == "")%>
+                <%if(errorMsg != ""){%>
                 <div style="margin-top: 9px" class="alert alert-danger" role="alert">
-                    
+                    <%=errorMsg%>
                 </div>
+                <%}%>
             </form>
         </div>
         <div class="overlay-container">

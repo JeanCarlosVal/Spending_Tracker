@@ -25,16 +25,34 @@ router.get('/test', (req,res) => {
 })
 
 //POST REQUEST FROM CLIENT ↓↓↓↓↓↓↓↓↓↓↓↓
-router.post('/Sign_in', (req,res) =>{
-  axios.get(URL +'/'+req.body.email+'/'+req.body.password)
+
+//this handles post from sign in button
+router.post('/Home_Page', (req,res) =>{
+  axios.get(URL+req.body.Email+'/'+req.body.Password)
     .then(response => {
       const data = response.data
 
-      console.log(data)
+      res.render('Home_Page', {user: data[0]})
     })
     .catch(error => {
-      if(error.status == 404)
-        res.render('Access_Page', {errorMsg: error.data})
+      if(error.response.status == 404)
+        res.render('Access_Page', {errorMsg: error.response.data})
+    })
+})
+
+//this handles post from sign up button
+router.post('/Profile', (req,res) => {
+  axios.post(URL,null,{
+    params: req.body
+  })
+    .then(response => {
+      const data = response.data
+      console.log(data)
+      res.render('Profile', {user: data})
+    })
+    .catch(error => {
+      if (error.response.status == 500)
+        res.render('Access_Page', {errorMsg: error.response.data})
     })
 })
 

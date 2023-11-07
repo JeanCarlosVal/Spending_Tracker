@@ -20,4 +20,9 @@ router.get('/:email/:password', async (req, res) => {
         res.send(user)
 })
 
+router.post('/', async (req,res) => {
+    await service.signUp(req.query)
+    res.status(201).send(req.query)
+})
+
 module.exports = router;
