@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 })
 
 //Sign In service
-router.get('/:email/:password', async (req, res) => {
+router.get('/:email', async (req, res) => {
     const user = await service.signIn(req.params.email, req.params.password)
     if (user.length == 0)
         res.status(404).json('Invalid Email or Password')

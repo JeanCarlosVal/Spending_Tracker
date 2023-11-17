@@ -7,8 +7,8 @@ module.exports.getAllUsers = async ()=> {
 }
 
 //Sign in module
-module.exports.signIn = async (email,password) => {
-    const [user] = await db.query("SELECT * FROM User WHERE Email = ? and Password = ?", [email, password])
+module.exports.signIn = async (email) => {
+    const [user] = await db.query("SELECT * FROM User WHERE Email = ?", [email])
     return user
 }
 

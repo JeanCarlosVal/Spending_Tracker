@@ -6,7 +6,7 @@
 <section>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="/Profile" method="POST">
+            <form action="/" method="POST">
                 <h1>Sign Up</h1>
                 <label>
                     <input type="text" name="Username" placeholder="Username" />
@@ -27,21 +27,31 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="/Home_Page" method="POST">
+            <form action="/Sign_In" method="POST">
                 <h1>Sign in</h1>
                 <label>
-                    <input type="email" name="Email" placeholder="Email" required/>
+                    <input type="email" name="Email" placeholder="Email" required />
                 </label>
                 <label>
-                    <input type="password" name="Password" placeholder="Password" required/>
+                    <input type="password" name="Password" placeholder="Password" required />
                 </label>
                 <a href="#">Forgot your password?</a>
                 <button>Sign In</button>
-                <%if(errorMsg != ""){%>
-                <div style="margin-top: 9px" class="alert alert-danger" role="alert">
-                    <%=errorMsg%>
-                </div>
-                <%}%>
+                <%if(errorMsg !="" ){%>
+                    <div style="margin-top: 9px" class="alert alert-danger" role="alert">
+                        <%=errorMsg%>
+                    </div>
+                    <%}%>
+                <%if(successMsg !="" ){%>
+                    <div style="margin-top: 9px" class="alert alert-success" role="alert">
+                        <%=successMsg%>
+                    </div>
+                    <%}%>
+                <%if(messages.error){%>
+                    <div style="margin-top: 9px" class="alert alert-danger" role="alert">
+                        <%=messages.error%>
+                    </div>
+                    <%}%>    
             </form>
         </div>
         <div class="overlay-container">
