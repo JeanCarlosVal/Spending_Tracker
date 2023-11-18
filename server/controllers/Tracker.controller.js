@@ -5,15 +5,9 @@ const service = require('../services/Tracker.service')
 
 //http://localhost:5000/api/tracker/
 
-//Get all Users service
-router.get('/', async (req, res) => {
-    const users = await service.getAllUsers()
-    res.send(users)
-})
-
 //Sign In service
 router.get('/:email', async (req, res) => {
-    const user = await service.signIn(req.params.email, req.params.password)
+    const user = await service.signIn(req.params.email)
     if (user.length == 0)
         res.status(404).json('Invalid Email or Password')
     else
@@ -22,6 +16,12 @@ router.get('/:email', async (req, res) => {
 
 router.post('/', async (req,res) => {
     await service.signUp(req.query)
+    res.status(201).send(req.query)
+})
+
+router.post('/update/profile', async (req, res) => {
+    console.log(req.query)
+    await service.profile(req.query)
     res.status(201).send(req.query)
 })
 

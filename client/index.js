@@ -6,6 +6,7 @@ const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 const flash = require('express-flash')
 const session = require('express-session')
+const colors = require('colors')
 
 const indexRouter = require('./routes/index');
 const passport = require('passport');
@@ -26,4 +27,10 @@ app.use(passport.session())
 
 app.use('/', indexRouter)
 
-app.listen(process.env.PORT || 3000)
+try {
+    colors.enable()
+    app.listen(process.env.PORT || 3000)
+    console.log('app running successfully at'.yellow,'http://localhost:3000'.blue)
+} catch {
+    console.log('Something went wrong!!'.red)
+}

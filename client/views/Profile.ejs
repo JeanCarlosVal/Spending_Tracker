@@ -4,8 +4,57 @@
 </div>
 <section>
     <div class="profile-container" id="container">
-        <div class="form-container profile-info-container">
-            
+        <div class="profile-form-container profile-info-container">
+            <h1>Profile</h1>
+            <form action="/Profile" method="POST">
+                <div class="profile-left-input">
+                    <label>
+                        <input type="text" name="Username" placeholder="Username: <%= username %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="FirstName" placeholder="First Name: <%= firstName  %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="MiddleName" placeholder="Middle Name: <%= middleName %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="LastName" placeholder="Last Name: <%= lastName %>" />
+                    </label>
+                    <label>
+                        <input type="email" name="Email" placeholder="Email: <%= email %>" />
+                    </label>
+                    <br>
+                    <br>
+                </div>
+                <div class="profile-right-input">
+                    <label>
+                        <input type="text" name="PhoneNumber" placeholder="Phone Number: <%= phoneNumber %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="Street" placeholder="Street: <%= street %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="City" placeholder="City: <%= city %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="State" placeholder="State: <%= state %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="Zipcode" placeholder="Zipcode: <%= zipcode %>" />
+                    </label>
+                    <button style="margin-top: 9px">Update</button>
+                </div>
+            </form>
+        </div>
+        <div class="profile-overlay-container">
+            <div class="profile-overlay">
+                <div class="profile-overlay-panel">
+                    <h1>Hello</h1>
+                    <h1><%= username %></h1>
+                    <p>You can update your profile information here</p>
+                    <button class="ghost"> Dashboard </button>
+                </div>
+            </div>
         </div>
     </div>
 </section>
