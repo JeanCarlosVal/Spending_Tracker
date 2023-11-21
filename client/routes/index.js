@@ -17,7 +17,7 @@ router.get('/', checkNotAuthenticated, (req, res) => {
 })
 
 router.get('/Profile', checkAuthenticated, (req, res) => {
-  res.render('Profile',{
+  res.render('Profile', {
     username: req.user[0].Username,
     firstName: req.user[0].FirstName,
     middleName: req.user[0].MiddleName,
@@ -32,26 +32,34 @@ router.get('/Profile', checkAuthenticated, (req, res) => {
 })
 
 router.post('/Profile', checkAuthenticated, (req, res) => {
-  for(const property in req.body){
-    if(req.body[property] == ''){
-      if(req.user[0][property] == null){
+  for (const property in req.body) {
+    if (req.body[property] == '') {
+      if (req.user[0][property] == null) {
         req.user[0][property] = ''
-      }else{
+      } else {
         continue;
       }
-    }else{
+    } else {
       req.user[0][property] = req.body[property]
     }
   }
-  axios.post(URL+'update/profile', null, {
+  axios.post(URL + 'update/profile', null, {
     params: req.user[0]
   })
     .then(res.redirect('Profile'))
     .catch(error => {
-      if(error.response.state == 500){
+      if (error.response.state == 500) {
         console.log(error)
       }
     })
+})
+
+router.get('/Expenses', checkAuthenticated, (req, res) => {
+  res.render('Expenses')
+})
+
+router.get('/Goals', checkAuthenticated, (req, res) => {
+  res.render('Goals')
 })
 
 router.get('/Home_Page', checkAuthenticated, (req, res) => {
@@ -65,9 +73,8 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
   //Sign Up section----------------------------------------------------
   try {
     const hashedPassword = await bcrypt.hash(req.body.Password, 10)
-    console.log(hashedPassword)
     req.body.Password = hashedPassword
-    req.body.ID = Date.now().toString() 
+    req.body.ID = Date.now().toString()
   } catch {
     res.render('Access_Page', { errorMsg: "Something went wrong!!", successMsg: "" })
   }
@@ -93,16 +100,16 @@ router.post('/Sign_In', checkNotAuthenticated, passport.authenticate('local', {
   failureFlash: true
 }))
 
-function checkAuthenticated(req,res, next){
-  if (req.isAuthenticated()){
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
     return next()
   }
 
   res.redirect('/')
 }
 
-function checkNotAuthenticated(req,res, next){
-  if (req.isAuthenticated()){
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
     return res.redirect('/Home_Page')
   }
   next()

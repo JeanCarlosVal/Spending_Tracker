@@ -1,3 +1,19 @@
+section {
+  animation: transition-page 1s;
+}
+
+@keyframes transition-page {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -316,6 +332,301 @@ html, body {
     text-align: center;
     transform: translateY(0);
     transition: transform .6s ease-in-out;
+  }
+  /*-----------------------------------------------------------------------*/
+
+
+  /*Dashboard css styles---------------------------------------------------*/
+
+  .dashboard-container {
+    background: #fff;
+    border-radius: 90px;
+    box-shadow: 30px 14px 28px rgba(0, 0, 5, .2), 0 10px 10px rgba(0, 0, 0, .2);
+    position: relative;
+    overflow: hidden;
+    opacity: 85%;
+    width: 1650px;
+    max-width: 100%;
+    min-height: 750px;
+    transition: 333ms;
+  }
+
+  .dashboard-form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transition: all .6s ease-in-out;
+  }
+
+  .dashboard-form-container input {
+    background: #eee;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  .dashboard-form-container h1{
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 20px 0px 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dashboard-form-container input:hover {
+    transform: scale(101%);
+  }
+
+  .dashboard-form-container form button{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dashboard-form-container div {
+    background: #fff;
+  }
+
+
+  .dashboard-container-c {
+    display: flex;
+    height: 100%;
+  }
+  
+  .recent-activity {
+    width: 40%;
+    height: 100%;
+    background-color: #f0f0f0;
+    overflow: auto;
+  }
+  
+  .account-activity {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .upper-half {
+    margin: 50px;
+    height: 50%;
+    display: flex;
+  }
+  
+  .lower-half {
+    height: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+  }
+
+  .menu {
+    width: 100%; /* Set the width to 100% */
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .recent-transactions {
+    padding: 20px;
+  }
+  
+  .account-summary {
+    padding: 20px;
+  }
+  
+  .financial-goals {
+    padding: 20px;
+    border-top: 1px solid #ccc;
+  }
+  
+  #spendingChart {
+    width: 100%; /* Make the chart take the full width of the container */
+    height: auto; /* Allow the height to adjust based on the width */
+  }
+  
+  
+  .transaction-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .transaction-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .transaction-item:last-child {
+    border-bottom: none; 
+  }
+  
+  .transaction-date,
+  .transaction-description,
+  .transaction-amount {
+    flex: 1;
+  }
+  
+  .recent-transactions h2 {
+    font-size: 1.2em;
+    margin-bottom: 3%;
+    margin-left: 3%;
+  }
+  
+  .transaction-date {
+    margin-right: 2%;
+  }
+  
+  .transaction-description {
+    margin-right: 2%;
+  }
+  
+  .transaction-amount {
+    font-weight: bold;
+  }
+  
+  #spendingChart {
+      width: 100%;
+      height: 100%; /* Adjust the height to your preference */
+  }
+  
+  .account-summary {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+  }
+
+  /*-----------------------------------------------------------------------*/
+
+  /*Expenses css styles----------------------------------------------------*/
+  .expenses-container {
+    background: #fff;
+    border-radius: 90px;
+    box-shadow: 30px 14px 28px rgba(0, 0, 5, .2), 0 10px 10px rgba(0, 0, 0, .2);
+    position: relative;
+    overflow: hidden;
+    opacity: 85%;
+    width: 1400px;
+    max-width: 100%;
+    min-height: 700px;
+    transition: 333ms;
+  }
+
+  .expenses-form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all .6s ease-in-out;
+  }
+
+  .expenses-form-container input {
+    background: #eee;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  .expenses-form-container h1{
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 20px 0px 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .expenses-form-container input:hover {
+    transform: scale(101%);
+  }
+
+  .expenses-form-container form {
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    padding:  0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .expenses-form-container div {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 10% 5%;
+    height: 100%;
+  }
+  /*-----------------------------------------------------------------------*/
+
+  /*Goals css styles-------------------------------------------------------*/
+  .goals-container {
+    background: #fff;
+    border-radius: 90px;
+    box-shadow: 30px 14px 28px rgba(0, 0, 5, .2), 0 10px 10px rgba(0, 0, 0, .2);
+    position: relative;
+    overflow: hidden;
+    opacity: 85%;
+    width: 1400px;
+    max-width: 100%;
+    min-height: 700px;
+    transition: 333ms;
+  }
+
+  .goals-form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all .6s ease-in-out;
+  }
+
+  .goals-form-container input {
+    background: #eee;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  .goals-form-container h1{
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 20px 0px 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .goals-form-container input:hover {
+    transform: scale(101%);
+  }
+
+  .goals-form-container form {
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    padding:  0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .goals-form-container div {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 10% 5%;
+    height: 100%;
   }
   /*-----------------------------------------------------------------------*/
   .overlay-container {
