@@ -335,6 +335,9 @@ html, body {
   }
   /*-----------------------------------------------------------------------*/
 
+  .title {
+    margin-bottom: 100%;
+  }
 
   /*Dashboard css styles---------------------------------------------------*/
 
@@ -467,24 +470,15 @@ html, body {
     border-bottom: none; 
   }
   
-  .transaction-date,
-  .transaction-description,
-  .transaction-amount {
+  .transaction {
     flex: 1;
+    margin-right: 2%;
   }
   
   .recent-transactions h2 {
     font-size: 1.2em;
     margin-bottom: 3%;
     margin-left: 3%;
-  }
-  
-  .transaction-date {
-    margin-right: 2%;
-  }
-  
-  .transaction-description {
-    margin-right: 2%;
   }
   
   .transaction-amount {
@@ -520,7 +514,6 @@ html, body {
 
   .expenses-form-container {
     position: absolute;
-    top: 0;
     height: 100%;
     transition: all .6s ease-in-out;
   }
@@ -551,7 +544,6 @@ html, body {
     background: #fff;
     display: flex;
     flex-direction: row;
-    padding:  0 50px;
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -562,8 +554,66 @@ html, body {
     background: #fff;
     display: flex;
     flex-direction: column;
-    padding: 10% 5%;
     height: 100%;
+  }
+
+  .expenses-info-container {
+    right: 0;
+    width: 80%;
+    z-index: 2;
+  }
+
+  .expenses-overlay-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform .6s ease-in-out;
+    z-index: 100;
+  }
+
+  .expenses-overlay {
+    background: #ff416c;
+    background: linear-gradient(to right, #008ecf, #008ecf) no-repeat 0 0 / cover;
+    color: #fff;
+    position: relative;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform: translateY(0);
+    transition: transform .6s ease-in-out;
+  }
+
+  .expenses-overlay-panel {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform .6s ease-in-out;
+  }
+
+  .view-activity-container {
+    right: 0;
+    width: 50%;
+    z-index: 3;
+    padding: 3% 3%;
+    overflow: auto;
+  }
+
+  .activity-container {
+    left: 0;
+    width: 50%;
+    z-index: 3;
+    padding: 12% 3%;
   }
   /*-----------------------------------------------------------------------*/
 
@@ -628,6 +678,51 @@ html, body {
     padding: 10% 5%;
     height: 100%;
   }
+
+  .goals-info-container {
+    right: 0;
+    width: 80%;
+    z-index: 2;
+  }
+
+  .goals-overlay-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform .6s ease-in-out;
+    z-index: 100;
+  }
+
+  .goals-overlay {
+    background: #ff416c;
+    background: linear-gradient(to right, #008ecf, #008ecf) no-repeat 0 0 / cover;
+    color: #fff;
+    position: relative;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform: translateY(0);
+    transition: transform .6s ease-in-out;
+  }
+
+  .goals-overlay-panel {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform .6s ease-in-out;
+  }
+
   /*-----------------------------------------------------------------------*/
   .overlay-container {
     position: absolute;

@@ -5,7 +5,7 @@
 <section>
     <div class="profile-container" id="container">
         <div class="profile-form-container profile-info-container">
-            <h1>Profile</h1>
+            <h1>Profile Information</h1>
             <form action="/Profile" method="POST">
                 <div class="profile-left-input">
                     <label>
@@ -49,12 +49,20 @@
         <div class="profile-overlay-container">
             <div class="profile-overlay">
                 <div class="profile-overlay-panel">
-                    <h1>Hello</h1>
-                    <h1><%= username %></h1>
-                    <p>You can update your profile information here</p>
+                    <h1 class="title">Profile</h1>
+                    <h3>Hello</h3>
+                    <h3><%= firstName %></h3>
+                    <p>You can view or update your profile information here</p>
                     <form action="/Home_Page" method="GET">
                         <button class="ghost"> Dashboard </button>
                     </form>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <span>Your ID: <%= id %></span>
                 </div>
             </div>
         </div>

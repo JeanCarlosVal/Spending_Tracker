@@ -27,7 +27,8 @@ router.get('/Profile', checkAuthenticated, (req, res) => {
     street: req.user[0].Street,
     city: req.user[0].City,
     state: req.user[0].State,
-    zipcode: req.user[0].ZipCode
+    zipcode: req.user[0].ZipCode,
+    id: req.user[0].ID
   })
 })
 
@@ -55,11 +56,61 @@ router.post('/Profile', checkAuthenticated, (req, res) => {
 })
 
 router.get('/Expenses', checkAuthenticated, (req, res) => {
-  res.render('Expenses')
+  axios.get(URL + 'activities/' + req.user[0].ID)
+    .then(response => {
+      res.render('Expenses', {
+        id: req.user[0].ID,
+        successMsg: "",
+        errorMsg: "",
+        data: response.data
+      })
+    }).catch(error => {
+      if(error.response.status == 404)
+        res.render('Expenses', {
+          id: req.user[0].ID,
+          successMsg: "",
+          errorMsg: "",
+          data: "No records found"
+        })
+    })
+})
+
+router.post('/Expenses', checkAuthenticated, (req, res) => {
+  req.body.ActID = Date.now().toString()
+  req.body.UID = req.user[0].ID
+  axios.post(URL + 'activities', null, {
+    params: req.body
+  })
+  .then(response => {
+    const data = response.data
+    axios.get(URL + 'activities/' + req.user[0].ID)
+    .then(response => {
+      res.render('Expenses', {
+        id: req.user[0].ID,
+        successMsg: "Record Uploaded!!!",
+        errorMsg: "",
+        data: response.data
+      })
+    }).catch(error => {
+      if(error.response.status == 404)
+        res.render('Expenses', {
+          id: req.user[0].ID,
+          successMsg: "",
+          errorMsg: "",
+          data: "No records found"
+        })
+    })
+  })
+  .catch(error => {
+    if (error.response.status == 500)
+      res.render('Expenses', { id: req.user[0].ID ,errorMsg: error.response.data, successMsg: "" })
+  })
 })
 
 router.get('/Goals', checkAuthenticated, (req, res) => {
-  res.render('Goals')
+  res.render('Goals', {
+    id: req.user[0].ID
+  })
 })
 
 router.get('/Home_Page', checkAuthenticated, (req, res) => {

@@ -20,8 +20,20 @@ router.post('/', async (req,res) => {
 })
 
 router.post('/update/profile', async (req, res) => {
-    console.log(req.query)
     await service.profile(req.query)
+    res.status(201).send(req.query)
+})
+
+router.get('/activities/:id', async (req,res) => {
+    const activities = await service.activities(req.params.id)
+    if(activities.length == 0)
+        res.status(404).json('No activities recorded')
+    else
+        res.send(activities)
+})
+
+router.post('/activities', async (req, res) => {
+    await service.postActivity(req.query)
     res.status(201).send(req.query)
 })
 

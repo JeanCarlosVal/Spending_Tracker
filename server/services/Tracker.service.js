@@ -19,3 +19,15 @@ module.exports.profile = async (obj) =>{
                                             [obj.Username, obj.FirstName, obj.MiddleName, obj.LastName, obj.Email, obj.Password, obj.PhoneNumber, obj.Zipcode, obj.Street, obj.City, obj.State, obj.ID])
     return affectedRows
 }
+
+//activities modules
+module.exports.activities = async (id) =>{
+    const [activities] = await db.query("SELECT Date, Notes, Type, Name, Amount FROM Activities WHERE UID = ?", [id])
+    return activities
+}
+
+module.exports.postActivity = async (obj) =>{
+    const [{affectedRows}] = await db.query("INSERT INTO Activities(ActivityID,UID,Date,Notes,Type,Name,Amount)" +
+                                            "VALUES(?,?,?,?,?,?,?)", [obj.ActID, obj.UID, obj.Date, obj.Notes, obj.Type, obj.Name, obj.Amount])
+    return affectedRows
+}
