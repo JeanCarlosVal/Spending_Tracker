@@ -37,12 +37,25 @@ router.post('/activities', async (req, res) => {
     res.status(201).send(req.query)
 })
 
-router.get('/graph/:id', async (req,res) => {
+router.get('/graph/:id', async (req, res) => {
     const barData = await service.barData(req.params.id)
     if(barData.length == 0)
         res.status(404).json('No activities recorded')
     else
         res.send(barData)
+})
+
+router.post('/goals', async (req, res) => {
+    await service.postGoals(req.query)
+    res.status(201).send(req.query)
+})
+
+router.get('/goals/:id', async (req, res) => {
+    const goals = await service.goals(req.params.id)
+    if(goals.length == 0)
+        res.status(404).json('No Goals Found')
+    else
+        res.send(goals)
 })
 
 module.exports = router;

@@ -613,6 +613,10 @@ html, body {
     overflow: auto;
   }
 
+  .view-activity-container::-webkit-scrollbar {
+    display: none;
+  }
+
   .activity-container {
     left: 0;
     width: 50%;
@@ -726,6 +730,30 @@ html, body {
     transform: translateY(0);
     transition: transform .6s ease-in-out;
   }
+
+  .goal-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .goal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    border: 0.5px solid #008ecf;
+    transition: 0.2s;
+  }
+
+  .goal-item:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 142, 207, 1), 0 6px 20px 0 rgba(0, 142, 207, 1);
+    border: 2px solid #008ecf;
+    transition: 0.2s;
+  }
+  
 
   /*-----------------------------------------------------------------------*/
   .overlay-container {

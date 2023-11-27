@@ -32,8 +32,22 @@ module.exports.postActivity = async (obj) =>{
     return affectedRows
 }
 
-//Dashboard graph data
+//Dashboard graph data module
 module.exports.barData = async (id) => {
     const [barData] = await db.query("SELECT Type, SUM((Amount * -1)) Amount FROM Activities WHERE UID = ? GROUP BY Type ORDER BY Amount desc", [id])
     return barData
+}
+
+//Goals modules
+module.exports.postGoals = async (obj) => {
+    const [{affectedRows}] = await db.query("INSERT INTO FinancialGoals(GoalID,UID,Amount,Description,Name,StartDate,EndDate)" +
+                                            "VALUES(?,?,?,?,?,?,?)", [obj.GoalID, obj.UID, obj.Amount, obj.Description, obj.Name, obj.StartDate, obj.EndDate])
+    return affectedRows
+}
+
+module.exports.goals = async (id) => {
+    const [goals] = await db.query("SELECT (SUM(Activities.Amount) * -1) Spent, FinancialGoals.Amount as MAX, FinancialGoals.Name, FinancialGoals.Description, StartDate, "+
+                                    "EndDate FROM FinancialGoals INNER JOIN Activities ON FinancialGoals.UID = Activities.UID WHERE Activities.Date > StartDate AND Activities.Date <"+
+                                    " EndDate AND FinancialGoals.UID = ? GROUP BY GoalID;", [id])
+    return goals
 }

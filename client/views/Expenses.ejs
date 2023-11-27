@@ -10,8 +10,7 @@
                     <h2>Add an Activity</h2>
                     <br>
                     <label>
-                        <input type="number" max="0" name="Amount" placeholder="Amount deducted      Ex. -123123"
-                            required />
+                        <input type="number" max="0" name="Amount" placeholder="Amount deducted      Ex. -123123" required />
                     </label>
                     <label>
                         <input type="date" name="Date" required />
@@ -40,7 +39,7 @@
                 <div class="view-activity-container">
                     <h2>Activities</h2>
                     <div class="recent-transactions">
-                        <div class="transaction-list" id="transactionList">
+                        <div class="transaction-list">
                             <% if(typeof data==='string' ) {%>
                                 <div class="transaction-item">
                                     <span class="transaction">

@@ -5,7 +5,64 @@
 <section>
     <div class="goals-container" id="container">
         <div class="goals-form-container goals-info-container">
-            
+            <form action="/Goals" method="POST">
+                <div class="activity-container">
+                    <h2>Add a Goal</h2>
+                    <br>
+                    <label>
+                        <input type="number" min="0" name="Amount" placeholder="Amount trying to spend for given period" required />
+                    </label>
+                    <label>
+                        Start Date:
+                        <input type="date" name="StartDate" required />
+                    </label>
+                    <label>
+                        End Date:
+                        <input type="date" name="EndDate" required />
+                    </label>
+                    <label>
+                        <input type="text" name="Description" placeholder="Description" required />
+                    </label>
+                    <label>
+                        <input type="text" name="Name" placeholder="Name of the goal" required />
+                    </label>
+                    <button style="margin-top: 9px">Add</button>
+                    <%if(errorMsg !="" ){%>
+                        <div style="margin-top: 9px" class="alert alert-danger" role="alert">
+                            <%=errorMsg%>
+                        </div>
+                        <%}%>
+                            <%if(successMsg !="" ){%>
+                                <div style="margin-top: 9px" class="alert alert-success" role="alert">
+                                    <%=successMsg%>
+                                </div>
+                                <%}%>
+                </div>
+                <div class="view-activity-container">
+                    <h2>Goals</h2>
+                    <div>
+                        <div class="goal-list">
+                            <% if(typeof data==='string' ) {%>
+                                <div class="goal-item">
+                                    <span class="transaction">
+                                        <%= data %>
+                                    </span>
+                                </div>
+                                <% } else { %>
+                                    <% data.forEach(activity=> { %>
+                                        <div class="goal-item">
+                                            <h4> <%= activity.Name %></h4>
+                                            <h6> <%= activity.Description %> </h6>
+                                            <span><%= activity.StartDate.substr(0,10) %> - <%= activity.EndDate.substr(0,10) %></span>
+                                            <progress max="<%= activity.MAX %>" value="<%= activity.Spent %>"></progress>
+                                            <span>$<%= activity.Spent %> - $<%= activity.MAX %></span>
+                                        </div>
+                                    <% }) %>
+                                <% } %>
+                        </div>    
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="goals-overlay-container">
             <div class="goals-overlay">
