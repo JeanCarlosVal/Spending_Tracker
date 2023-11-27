@@ -37,4 +37,12 @@ router.post('/activities', async (req, res) => {
     res.status(201).send(req.query)
 })
 
+router.get('/graph/:id', async (req,res) => {
+    const barData = await service.barData(req.params.id)
+    if(barData.length == 0)
+        res.status(404).json('No activities recorded')
+    else
+        res.send(barData)
+})
+
 module.exports = router;

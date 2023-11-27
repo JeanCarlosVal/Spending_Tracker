@@ -12,6 +12,30 @@
                         <h2>Recent Transactions</h2>
                         <!-- Add dynamic content here based on user's recent transactions -->
                         <div class="transaction-list" id="transactionList">
+                            <div class="transaction-item">
+                                <span class="transaction bold">Date </span>
+                                <span class="transaction bold">Note </span>
+                                <span class="transaction bold">Type </span>
+                                <span class="transaction bold">Name </span>
+                                <span class="transaction-amount">Amount </span>
+                            </div>
+                            <% if(typeof data==='string' ) {%>
+                                <div class="transaction-item">
+                                    <span class="transaction">
+                                        <%= data %>
+                                    </span>
+                                </div>
+                                <% } else { %>
+                                    <% data.forEach(activity=> { %>
+                                        <div class="transaction-item">
+                                            <span class="transaction"><%= activity.Date.substr(0,10) %></span>
+                                            <span class="transaction"><%= activity.Notes %></span>
+                                            <span class="transaction"><%= activity.Type %></span>
+                                            <span class="transaction"><%= activity.Name %></span>
+                                            <span class="transaction-amount"><%= activity.Amount %></span>
+                                        </div>
+                                        <% }) %>
+                                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -49,4 +73,4 @@
     </div>
 </section>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js'></script>
-<script src="/js/Dashboard.js"></script>
+<%- chartData %>

@@ -31,3 +31,9 @@ module.exports.postActivity = async (obj) =>{
                                             "VALUES(?,?,?,?,?,?,?)", [obj.ActID, obj.UID, obj.Date, obj.Notes, obj.Type, obj.Name, obj.Amount])
     return affectedRows
 }
+
+//Dashboard graph data
+module.exports.barData = async (id) => {
+    const [barData] = await db.query("SELECT Type, SUM((Amount * -1)) Amount FROM Activities WHERE UID = ? GROUP BY Type ORDER BY Amount desc", [id])
+    return barData
+}

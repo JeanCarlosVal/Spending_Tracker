@@ -6,9 +6,9 @@ const passport = require('passport')
 
 const axios = require('axios')
 const URL = 'http://localhost:5000/api/tracker/'
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 initializePassport(passport)
-
 
 //GET REQUEST FROM CLIENT ↓↓↓↓↓↓↓↓↓↓↓
 
@@ -82,7 +82,6 @@ router.post('/Expenses', checkAuthenticated, (req, res) => {
     params: req.body
   })
   .then(response => {
-    const data = response.data
     axios.get(URL + 'activities/' + req.user[0].ID)
     .then(response => {
       res.render('Expenses', {
@@ -113,8 +112,91 @@ router.get('/Goals', checkAuthenticated, (req, res) => {
   })
 })
 
-router.get('/Home_Page', checkAuthenticated, (req, res) => {
-  res.render('Home_Page')
+router.get('/Home_Page', checkAuthenticated, async (req, res) => {
+  let labels = "["
+  let data = "["
+
+  axios.get(URL + 'graph/' + req.user[0].ID)
+    .then(response => {
+      response.data.forEach(element => {
+        labels += "'" + element.Type + "'"+ ", "
+        data += element.Amount + ","
+      });
+      labels += "]"
+      data += "]"
+    })
+    .catch(error => {
+      if(error.response.status == 404)
+      labels += "]"
+      data += "]"
+    })
+
+  await delay(100)
+  axios.get(URL + 'activities/' + req.user[0].ID)
+    .then(response => {
+      res.render('Home_Page', {
+        data: response.data,
+        chartData: "<script>//Dashboard logic\n"+
+        "// Example data (replace this with your actual data)\n"+ 
+        "var categoryData = {\n" +
+            "// {Category: value} => {'Food': 300, 'Transportation': 150, 'Entertainment': 200, 'Utilities': 100, 'Others': 50}\n"+
+            "labels: "+labels+",\n"+
+            "datasets: [{\n"+
+                "label: 'Spending by Category',\n"+
+                "data: "+data+",\n"+
+                "backgroundColor: [\n"+
+                    "'rgba(255, 99, 132, 0.5)',\n"+
+                    "'rgba(54, 162, 235, 0.5)',\n"+
+                    "'rgba(255, 206, 86, 0.5)',\n"+
+                    "'rgba(75, 192, 192, 0.5)',\n"+
+                    "'rgba(153, 102, 255, 0.5)',\n"+
+                "],\n"+
+                "borderColor: [\n"+
+                    "'rgba(255, 99, 132, 1)',\n"+
+                    "'rgba(54, 162, 235, 1)',\n"+
+                    "'rgba(255, 206, 86, 1)',\n"+
+                    "'rgba(75, 192, 192, 1)',\n"+
+                    "'rgba(153, 102, 255, 1)',\n"+
+                "],\n"+
+                "borderWidth: 1\n"+
+            "}]\n"+
+        "};\n"+
+        
+        "// Get the context of the canvas element\n"+
+        "var ctx = document.getElementById('spendingChart').getContext('2d');\n"+
+        
+        "// Create the chart\n"+
+        "var spendingChart = new Chart(ctx, {\n"+
+            "type: 'bar',\n"+
+            "data: categoryData,\n"+
+            "options: {\n"+
+                "scales: {\n"+
+                    "y: {\n"+
+                        "beginAtZero: true\n"+
+                    "}\n"+
+                "},\n"+
+                "responsive: true,\n"+
+                "maintainAspectRatio: false,\n"+
+                "plugins: {\n"+
+                    "datalabels: {\n"+
+                        "anchor: 'end',\n"+
+                        "align: 'top',\n"+
+                        "formatter: function (value, context) {\n"+
+                            "return '$' + value; // Format the label as currency\n"+
+                        "}\n"+
+                    "}\n"+
+                "}\n"+
+            "}\n"+
+        "});\n"+
+        "</script>"
+
+      })
+    }).catch(error => {
+      if(error.response.status == 404)
+        res.render('Home_Page', {
+          data: "No records found"
+        })
+    })
 })
 
 //POST REQUEST FROM CLIENT ↓↓↓↓↓↓↓↓↓↓↓↓
