@@ -1,1 +1,76 @@
-Hello <%= user.Username%>
+<div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+<section>
+    <div class="dashboard-container" id="container">
+        <div class="dashboard-form-container">
+            <div class="dashboard-container-c">
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <div class="recent-transactions">
+                        <h2>Recent Transactions</h2>
+                        <!-- Add dynamic content here based on user's recent transactions -->
+                        <div class="transaction-list" id="transactionList">
+                            <div class="transaction-item">
+                                <span class="transaction bold">Date </span>
+                                <span class="transaction bold">Note </span>
+                                <span class="transaction bold">Type </span>
+                                <span class="transaction bold">Name </span>
+                                <span class="transaction-amount">Amount </span>
+                            </div>
+                            <% if(typeof data==='string' ) {%>
+                                <div class="transaction-item">
+                                    <span class="transaction">
+                                        <%= data %>
+                                    </span>
+                                </div>
+                                <% } else { %>
+                                    <% data.forEach(activity=> { %>
+                                        <div class="transaction-item">
+                                            <span class="transaction"><%= activity.Date.substr(0,10) %></span>
+                                            <span class="transaction"><%= activity.Notes %></span>
+                                            <span class="transaction"><%= activity.Type %></span>
+                                            <span class="transaction"><%= activity.Name %></span>
+                                            <span class="transaction-amount"><%= activity.Amount %></span>
+                                        </div>
+                                        <% }) %>
+                                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <!-- Account Activity -->
+                <div class="account-activity">
+                    <!-- Upper Half - Account Summary with Graph -->
+                    <div class="upper-half">
+                        <!-- Account Summary -->
+                        <div class="account-summary">
+                            <h2>Account Summary</h2>
+                            <!-- Add dynamic content here based on user's account summary -->
+                            <canvas id="spendingChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- Lower Half - Navigation Menu -->
+                    <div class="lower-half">
+                        <div class="menu">
+                            <h2>Navigation Menu</h2>
+                            <!-- Use buttons for navigation -->
+                            <form action="/Profile" method="GET">
+                                <button>Profile</button>
+                            </form>
+                            <form action="/Expenses" method="GET">
+                                <button>Expenses</button>
+                            </form>
+                            <form action="/Goals" method="GET">
+                                <button>Goals</button>
+                            </form>
+                            <!-- Add more buttons as needed -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js'></script>
+<%- chartData %>

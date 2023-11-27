@@ -1,0 +1,85 @@
+<div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+<section>
+    <div class="expenses-container" id="container">
+        <div class="expenses-form-container expenses-info-container">
+            <form action="/Expenses" method="POST">
+                <div class="activity-container">
+                    <h2>Add an Activity</h2>
+                    <br>
+                    <label>
+                        <input type="number" max="0" name="Amount" placeholder="Amount deducted      Ex. -123123" required />
+                    </label>
+                    <label>
+                        <input type="date" name="Date" required />
+                    </label>
+                    <label>
+                        <input type="text" name="Notes" placeholder="Description" required />
+                    </label>
+                    <label>
+                        <input type="text" name="Type" placeholder="Category add or select one" required />
+                    </label>
+                    <label>
+                        <input type="text" name="Name" placeholder="Name of the activity" required />
+                    </label>
+                    <button style="margin-top: 9px">Add</button>
+                    <%if(errorMsg !="" ){%>
+                        <div style="margin-top: 9px" class="alert alert-danger" role="alert">
+                            <%=errorMsg%>
+                        </div>
+                        <%}%>
+                            <%if(successMsg !="" ){%>
+                                <div style="margin-top: 9px" class="alert alert-success" role="alert">
+                                    <%=successMsg%>
+                                </div>
+                                <%}%>
+                </div>
+                <div class="view-activity-container">
+                    <h2>Activities</h2>
+                    <div class="recent-transactions">
+                        <div class="transaction-list">
+                            <% if(typeof data==='string' ) {%>
+                                <div class="transaction-item">
+                                    <span class="transaction">
+                                        <%= data %>
+                                    </span>
+                                </div>
+                                <% } else { %>
+                                    <% data.forEach(activity=> { %>
+                                        <div class="transaction-item">
+                                            <span class="transaction">Date: <%= activity.Date.substr(0,10) %></span>
+                                            <span class="transaction">Note: <%= activity.Notes %></span>
+                                            <span class="transaction">Type: <%= activity.Type %></span>
+                                            <span class="transaction">Name: <%= activity.Name %></span>
+                                            <span class="transaction-amount">Amount: <%= activity.Amount %></span>
+                                        </div>
+                                    <% }) %>
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="expenses-overlay-container">
+            <div class="expenses-overlay">
+                <div class="expenses-overlay-panel">
+                    <h1 class="title">Expenses</h1>
+                    <p>In this page you can add and view any spending activity that you would like to record</p>
+                    <form action="/Home_Page" method="GET">
+                        <button class="ghost"> Dashboard </button>
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <span>Your ID: <%= id %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js'></script>

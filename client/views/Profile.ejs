@@ -1,1 +1,71 @@
-Hello <%= user.Username%>
+<div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+<section>
+    <div class="profile-container" id="container">
+        <div class="profile-form-container profile-info-container">
+            <h1>Profile Information</h1>
+            <form action="/Profile" method="POST">
+                <div class="profile-left-input">
+                    <label>
+                        <input type="text" name="Username" placeholder="Username: <%= username %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="FirstName" placeholder="First Name: <%= firstName  %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="MiddleName" placeholder="Middle Name: <%= middleName %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="LastName" placeholder="Last Name: <%= lastName %>" />
+                    </label>
+                    <label>
+                        <input type="email" name="Email" placeholder="Email: <%= email %>" />
+                    </label>
+                    <br>
+                    <br>
+                </div>
+                <div class="profile-right-input">
+                    <label>
+                        <input type="text" name="PhoneNumber" placeholder="Phone Number: <%= phoneNumber %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="Street" placeholder="Street: <%= street %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="City" placeholder="City: <%= city %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="State" placeholder="State: <%= state %>" />
+                    </label>
+                    <label>
+                        <input type="text" name="Zipcode" placeholder="Zipcode: <%= zipcode %>" />
+                    </label>
+                    <button style="margin-top: 9px">Update</button>
+                </div>
+            </form>
+        </div>
+        <div class="profile-overlay-container">
+            <div class="profile-overlay">
+                <div class="profile-overlay-panel">
+                    <h1 class="title">Profile</h1>
+                    <h3>Hello</h3>
+                    <h3><%= firstName %></h3>
+                    <p>You can view or update your profile information here</p>
+                    <form action="/Home_Page" method="GET">
+                        <button class="ghost"> Dashboard </button>
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <span>Your ID: <%= id %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js'></script>
