@@ -352,9 +352,8 @@ html, body {
     position: relative;
     overflow: hidden;
     opacity: 85%;
-    width: 1650px;
-    max-width: 100%;
-    min-height: 750px;
+    width: 1450px;
+    height: 750px;
     transition: 333ms;
   }
 
