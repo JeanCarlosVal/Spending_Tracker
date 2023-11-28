@@ -224,7 +224,8 @@ router.get('/Home_Page', checkAuthenticated, async (req, res) => {
     }).catch(error => {
       if (error.response.status == 404)
         res.render('Home_Page', {
-          data: "No records found"
+          data: "No records found",
+          chartData: "No records found"
         })
     })
 })
