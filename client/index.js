@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const flash = require('express-flash')
 const session = require('express-session')
 const colors = require('colors')
+const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index');
 const passport = require('passport');
@@ -16,6 +17,7 @@ app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
+app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 app.use(flash())
 app.use(session({
