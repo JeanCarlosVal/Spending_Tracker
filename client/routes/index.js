@@ -134,7 +134,24 @@ router.post('/Goals', checkAuthenticated, (req, res) => {
     params: req.body
   })
     .then(response => {
-      res.render('Goals', { id: req.user[0].ID, errorMsg: "", successMsg: "Goal Uploaded!!!" })
+      axios.get(URL + 'goals/' + req.user[0].ID)
+        .then(response => {
+          res.render('Goals', {
+            id: req.user[0].ID,
+            successMsg: "Goal Uploaded!!!",
+            errorMsg: "",
+            data: response.data
+          })
+        })
+        .catch(error => {
+          if (error.response.status == 404)
+            res.render('Goals', {
+              id: req.user[0].ID,
+              successMsg: "",
+              errorMsg: "",
+              data: "No Records found"
+            })
+        })
     })
     .catch(error => {
       if (error.response.status == 500)
